@@ -1,16 +1,21 @@
 
-library(shiny)
+# library(shiny)
+# require(shiny)
 library(leaflet)
 library(sf)
 library(dplyr)
+# require(dplyr)
 library(data.table)
 library(ggplot2)
-library(shinyWidgets)
-library(tableHTML)
-library(extrafont)
+# library(shinyWidgets)
+# library(tableHTML)
+# library(extrafont)
 library(shinydashboard)
 # library(shinyjs)
-library(viridis)
+# library(viridis)
+
+
+
 
 
 # loadfonts()
@@ -202,17 +207,19 @@ server <- function(input, output) {
 
    ggplot(teste) + geom_line(aes(y = VOLUME, x = DATA, group = 1), size = 1) +
      geom_point(aes(y = VOLUME, x = DATA, color = as.factor(PESQUISA)), size = 4,alpha = 0.8) +
-     geom_text(data = teste,aes(x = DATA, y = VOLUME, label = VOLUME),nudge_y = 0.05*max(teste$VOLUME),family = 'Bahnschrift', fontface = "bold",size = 5) +
-     ylab('Volume ') + xlab('Mes/Ano') +
+     geom_text(data = teste,aes(x = DATA, y = VOLUME, label = VOLUME),nudge_y = 0.05*max(teste$VOLUME), fontface = "bold",size = 5) +
+     ylab('Volume de bicicletas ') + xlab('Mes/Ano') +
      facet_wrap(~SENTIDO)  + labs(color = 'Tipo de pesquisa', size = 'Horas Coletadas') + theme_classic()+
-     theme(plot.title = element_text(face = "bold",size = 30,family = 'Bahnschrift'),
-           plot.subtitle = element_text(face = "bold", colour = "#27746E",size = 12,family = 'Bahnschrift'),
-           axis.title = element_text(size = 14,family = 'Bahnschrift'),
-           axis.text.y = element_text(size = 14,family = 'Bahnschrift'),
-           axis.text.x = element_text(size = 12,family = 'Bahnschrift'),
-           legend.text = element_text(size = 14,family = 'Bahnschrift'),
-           legend.title = element_text(size = 14,family = 'Bahnschrift'),
-           strip.text = element_text(size = 12,family = 'Bahnschrift')) +
+     theme(plot.title = element_text(face = "bold",size = 25),
+           plot.subtitle = element_text(face = "bold", colour = "#27746E",size = 30),
+           axis.title = element_text(size = 14),
+           axis.text.y = element_text(size = 14, colour = '#27746E', face = "bold"),
+           axis.text.x = element_text(size = 12,colour = '#27746E', face = "bold"),
+           legend.text = element_text(size = 14),
+           legend.title = element_text(size = 14),
+           strip.text =  element_text(size = 12, face = "bold", color = 'white'),
+           strip.background = element_rect(fill="#27746E"),
+           axis.line = element_line(size = 1, colour = "#27746E")) +
      scale_x_datetime(date_labels = "%m-%y",date_breaks = '6 month')+
      ggtitle('Por sentido',subtitle = unique(data()$END))
 
@@ -267,21 +274,25 @@ server <- function(input, output) {
    #         strip.text = element_text(size = 12,family = 'Bahnschrift'))
 
    ggplot(evol.geral) +
-     geom_line(aes(y = VOLUME, x = DATA),size = 1)  + ylab('Volume ') + xlab('Mes/Ano') +
+     geom_line(aes(y = VOLUME, x = DATA),size = 1)  + ylab('Volume de bicicletas ') + xlab('Mes/Ano') +
      geom_point(aes(y = VOLUME, x = DATA,color = as.factor(PESQUISA)),alpha = 0.8, size = 5) +
-     geom_text(data = evol.geral, aes(x = DATA, y = VOLUME, label = VOLUME),nudge_y = 0.05*max(evol.geral$VOLUME),family = 'Bahnschrift', fontface = "bold", size = 5) +
+     geom_text(data = evol.geral, aes(x = DATA, y = VOLUME, label = VOLUME),nudge_y = 0.05*max(evol.geral$VOLUME), fontface = "bold", size = 5) +
      # scale_color_manual(values = c("red", "black")) +
      # geom_text(data = evol.geral %>% filter(DIF > 0),aes(x = CORD.X, y = CORD.Y, label = paste(DIF,"%")),nudge_y = 200,nudge_x = -.3, color = 'blue') +
      # geom_text(data = evol.geral %>% filter(DIF < 0),aes(x = CORD.X, y = CORD.Y, label = paste(DIF,"%")),nudge_y = 200,nudge_x = -.3, color = 'red')  +
      theme_classic() + labs(size = 'Horas coletadas') +
-     theme(plot.title = element_text(face = "bold",size = 30,family = 'Bahnschrift'),
-           plot.subtitle = element_text(face = "bold", colour = "#27746E",size = 12,family = 'Bahnschrift'),
-           axis.title = element_text(size = 14,family = 'Bahnschrift'),
-           axis.text.y = element_text(size = 14,family = 'Bahnschrift'),
-           axis.text.x = element_text(size = 13,family = 'Bahnschrift'),
-           legend.text = element_text(size = 14,family = 'Bahnschrift'),
-           legend.title = element_text(size = 14,family = 'Bahnschrift'),
-           strip.text = element_text(size = 12,family = 'Bahnschrift')) +
+     theme(plot.title = element_text(face = "bold",size = 25),
+           plot.subtitle = element_text(face = "bold", colour = "#27746E",size = 30),
+           axis.title = element_text(size = 14),
+           # axis.text.y = element_text(size = 14),
+           # axis.text.x = element_text(size = 13),
+           legend.text = element_text(size = 14),
+           legend.title = element_text(size = 14),
+           strip.text = element_text(size = 12, face = "bold", color = 'white'),
+           strip.background = element_rect(fill="#27746E"),
+           axis.line = element_line(size = 1, colour = "#27746E"),
+           axis.text.y = element_text(size = 14, colour = '#27746E', face = "bold"),
+           axis.text.x = element_text(size = 12,colour = '#27746E', face = "bold")) +
      scale_x_datetime(date_labels = "%m-%y",date_breaks = '6 month')+
      ggtitle('Total do ponto',subtitle = unique(data()$END))+
        labs(color = 'Tipo de pesquisa')
