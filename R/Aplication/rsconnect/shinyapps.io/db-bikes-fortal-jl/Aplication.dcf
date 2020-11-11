@@ -1,0 +1,12 @@
+name: Aplication
+title: Aplication
+username:
+account: db-bikes-fortal-jl
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3202140
+bundleId: 3843122
+url: https://db-bikes-fortal-jl.shinyapps.io/Aplication/
+when: 1605019592.36459
+asMultiple: FALSE
+asStatic: FALSE

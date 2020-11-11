@@ -1,0 +1,12 @@
+name: db-bikes-jl-fortal
+title: db-bikes-jl-fortal
+username:
+account: db-bikes-fortal-jl
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3202446
+bundleId: 3843049
+url: https://db-bikes-fortal-jl.shinyapps.io/db-bikes-jl-fortal/
+when: 1605018771.2459
+asMultiple: FALSE
+asStatic: FALSE
