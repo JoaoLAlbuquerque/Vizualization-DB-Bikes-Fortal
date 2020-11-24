@@ -1,5 +1,5 @@
 
-# library(shiny)
+library(shiny)
 # require(shiny)
 library(leaflet)
 library(sf)
@@ -96,7 +96,29 @@ ui <- dashboardPage(
                 )
 
 
-              ))
+              )),
+
+      tabItem(tabName = 'acc',
+
+              fluidRow(
+
+                column(width = 12,
+
+                       radioButtons("radio", label = h3("Estabelecimentos"),
+                                    choices = list("Bancos" = 1, "Paradas metro" = 2, "hospitais" = 3,
+                                                   "supermercados" = 4, "terminais" = 5),
+                                    selected = 1,inline = TRUE),
+
+                       plotOutput('temp1',height = 500)
+
+
+                )
+              )
+
+
+
+
+              )
 
               )
 
